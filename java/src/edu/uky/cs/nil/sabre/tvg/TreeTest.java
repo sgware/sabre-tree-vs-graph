@@ -1,8 +1,15 @@
-package edu.uky.cs.nil.sabre;
+package edu.uky.cs.nil.sabre.tvg;
 
 import java.io.File;
 import java.io.FileWriter;
 
+import com.opencsv.CSVWriter;
+
+import edu.uky.cs.nil.sabre.Action;
+import edu.uky.cs.nil.sabre.Character;
+import edu.uky.cs.nil.sabre.Number;
+import edu.uky.cs.nil.sabre.Problem;
+import edu.uky.cs.nil.sabre.Session;
 import edu.uky.cs.nil.sabre.prog.ProgressionCostFactory;
 import edu.uky.cs.nil.sabre.prog.ProgressionPlanner;
 import edu.uky.cs.nil.sabre.prog.ProgressionSearch;
@@ -10,9 +17,7 @@ import edu.uky.cs.nil.sabre.search.Planner;
 import edu.uky.cs.nil.sabre.search.Result;
 import edu.uky.cs.nil.sabre.util.Worker;
 
-import com.opencsv.CSVWriter;
-
-public class treeTest{	
+public class TreeTest{	
 	
 	static int limit = 0;
 	static int maxlimit = 5;

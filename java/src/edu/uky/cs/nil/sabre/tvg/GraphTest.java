@@ -1,20 +1,23 @@
-package edu.uky.cs.nil.sabre;
+package edu.uky.cs.nil.sabre.tvg;
 
 import java.io.File;
 import java.io.FileWriter;
-
-import edu.uky.cs.nil.sabre.comp.CompiledProblem;
-import edu.uky.cs.nil.sabre.graph.StateGraph;
-import edu.uky.cs.nil.sabre.graph.StateNode;
-import edu.uky.cs.nil.sabre.logic.True;
-
 import java.util.HashMap;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 import com.opencsv.CSVWriter;
 
-public class graphTest {
+import edu.uky.cs.nil.sabre.Action;
+import edu.uky.cs.nil.sabre.Character;
+import edu.uky.cs.nil.sabre.Problem;
+import edu.uky.cs.nil.sabre.Session;
+import edu.uky.cs.nil.sabre.comp.CompiledProblem;
+import edu.uky.cs.nil.sabre.graph.StateGraph;
+import edu.uky.cs.nil.sabre.graph.StateNode;
+import edu.uky.cs.nil.sabre.logic.True;
+
+public class GraphTest {
 
 	private static StateNode n = null;
 	static int depth = 0;
