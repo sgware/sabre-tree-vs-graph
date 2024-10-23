@@ -10,6 +10,6 @@ run it:
 ```
 git clone --recurse-submodules https://github.com/sgware/sabre-tree-vs-graph
 cd sabre-tree-vs-graph/java
-javac -cp opencsv/opencsv-5.9.jar;sabre/lib/sabre.jar -sourcepath src -d bin src/edu/uky/cs/nil/sabre/tvg/Main.java
-java -Xms10g -Xmx10g -cp opencsv/opencsv-5.9.jar;sabre/lib/sabre.jar;bin edu.uky.cs.nil.sabre.tvg.Main
+javac -cp opencsv/opencsv-5.9.jar;sabre/lib/sabre.jar -sourcepath sabre-benchmarks/src;src -d bin src/edu/uky/cs/nil/sabre/tvg/Main.java
+java -Xms10g -Xmx10g -cp opencsv/opencsv-5.9.jar;sabre/lib/sabre.jar;sabre-benchmarks/bin;bin edu.uky.cs.nil.sabre.tvg.Main
 ```
