@@ -9,7 +9,7 @@ run it:
 
 ```
 git clone --recurse-submodules https://github.com/sgware/sabre-tree-vs-graph
-cd sabre-tree-vs-graph/java
-javac -cp opencsv/opencsv-5.9.jar;sabre/lib/sabre.jar -sourcepath sabre-benchmarks/src;src -d bin src/edu/uky/cs/nil/sabre/tvg/Main.java
-java -Xms10g -Xmx10g -cp opencsv/opencsv-5.9.jar;sabre/lib/sabre.jar;sabre-benchmarks/bin;bin edu.uky.cs.nil.sabre.tvg.Main
+cd sabre-tree-vs-graph
+javac -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar -sourcepath java/sabre-benchmarks/src;java/src -d java/bin java/src/edu/uky/cs/nil/sabre/tvg/Main.java
+java -Xms10g -Xmx10g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.Main
 ```
