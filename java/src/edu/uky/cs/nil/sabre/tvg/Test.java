@@ -1,0 +1,40 @@
+package edu.uky.cs.nil.sabre.tvg;
+
+import java.io.File;
+
+
+public class Test {
+	// Tracks the current depth of the search
+	static int depth = 0;
+	
+	// Counter for the number of visited nodes
+	static int visited = 0;
+	
+	// The current depth limit for the search
+	static int limit = 1;
+	
+	// Variables to store the start and end times of the search
+	static double end = 0;
+	static double start = 0;
+		
+	// Define directories for input problems and output results
+    static final File directory = new File("java/sabre-benchmarks/problems/");
+    static final File directory1 = new File("output/");
+	
+	// File path for problem files
+	static String filePath = "";
+	
+	// Epistemic limit
+	static int epi = 0;
+	
+	// Time limit for the program in minutes
+	static int minutes = 0;
+	
+	static boolean breakLoop = true;
+	
+	double startProgram = 0;
+	long endProgram =  0;
+	
+	static long sameVisited = 0;
+
+}

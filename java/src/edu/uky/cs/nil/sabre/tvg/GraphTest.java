@@ -20,60 +20,27 @@ import edu.uky.cs.nil.sabre.logic.True;
 
 /**
  * Runs graph-based search on a suite of {@link Benchmark benchmark problems} 
- * up to a defined depth and time, and outputs the results 
- * in a CSV file for each problem
+ * up to a defined time limit, and outputs the results 
+ * into a CSV file for each problem
  */
-public class GraphTest {
-	
-	// Static variable for the current StateNode
-	private static StateNode n = null;
-	
-	// Tracks the current depth of the search
-	static int depth = 0;
-	
-	// Counter for the number of visited nodes
-	static int visited = 0;
-	
-	// The current depth limit for the search
-	static int limit = 0;
-	
-	// Maximum depth limit allowed
-	static int maxlimit = 50;
-	
-	// Variables to store the start and end times of the search
-	static double end = 0;
-	static double start = 0;
-	
+public class GraphTest extends Test {
+		
 	// HashMap to track visited nodes and their corresponding depths
 	static HashMap<StateNode, Integer> map = new HashMap<>();
 	
 	// Queue (deque) to manage nodes for breadth-first search
 	static Deque<StateNode> q = new ArrayDeque<>();
-	
-	// Define directories for input problems and output results
-	private static final File directory = new File("java/sabre-benchmarks/problems/");
-	private static final File directory1 = new File("output/");
-	
-	// File path for problem files
-	static String filePath = "";
-	
-	// Epistemic limit
-	static int epi = 0;
-	
-	// Time limit for the program in minutes
-	static int minutes = 0;
+	private static StateNode n = null;
 	
 	/**
      * This method executes the GraphTest, performing search on a problem using 
-     * a graph-based search algorithm and logs the results (depth limit, nodes visited, 
+     * a graph-based search algorithm and logs the results (depth, nodes visited, 
      * and time taken) into a CSV file for analysis.
      */
 	public void callGraphTest() {
 		try {
 			// Initialize a new session
 			Session session = new Session();
-			
-			// Load the problem file from the specified directory
 			File file = new File(directory.getPath() + File.separator + filePath + ".txt");
 			session.setProblem(file);
 			
@@ -87,17 +54,22 @@ public class GraphTest {
 	        // Write CSV header
 	        String[] header = { "Depth Limit", "Visited Nodes", "Time Taken (ms)" }; 
 	        writer.writeNext(header); 
+            
+	        // Initialize flag variable to break loop at a limit
+	        breakLoop = true;
 	        
-	        // Get the current time and calculate the ending time depending on how long to run each problem for a certain depth
-			double startProgram = System.currentTimeMillis();
-			double endProgram =  startProgram + minutes * 60 * 1000;
+	        // Initialize counter variable to record the depth limits
+			limit = 1;
 			
-			// Loop through depth limits, incrementing until the maximum depth or time limit is reached
-			for(limit = 1; limit <= maxlimit && System.currentTimeMillis() <= endProgram; limit++) {
+			// Loop through depth limits, incrementing until the time limit is reached
+			while(breakLoop) {
 				// Reset counters and timing variables for each depth
 				visited = 0;
 				end = 0;
 				start = 0;
+				
+				// Set flag variable to false to terminate loop at next iteration if limit reached
+				breakLoop = false;
 				
 				// Retrieve the compiled problem and initialize the state graph
 				CompiledProblem g = (CompiledProblem) session.getCompiledProblem();
@@ -106,37 +78,57 @@ public class GraphTest {
 				// Record the start time of the current search iteration
 				start = System.currentTimeMillis();
 				
+				// Calculate the end time limit
+				endProgram =  (long) (start + minutes * 60 * 1000);
+				
 				// Visit the root node of the graph and process nodes in the queue (breadth-first search)
 				visit(graph.root, 0);
-				while (q.size() > 0) {
+				while (q.size() > 0 && System.currentTimeMillis() <= endProgram) {
+					// Set flag variable to true to continue loop at next iteration
+					breakLoop = true;
 					n = q.poll();
 					depth = map.get(n);
 					if(depth < limit) {
-						for(Action a : g.actions)
+						for(Action a : g.actions) {
 							// Check if the action's precondition is satisfied for the current node
 							if(a.precondition.evaluate(n).equals(True.TRUE)) {
-								visit(n.getAfter(a), depth + 1); // Visit the node resulting from applying the action			 
+								visit(n.getAfter(a).getAfterTriggers(), depth + 1); // Visit the node resulting from applying the action			 
 							}
-					}  
+							if(System.currentTimeMillis() >= endProgram) {
+								breakLoop = false;
+								break;
+							}
+					}
 				}
-				
+					
+				}
 				// Record the end time of the current search iteration
 				end = System.currentTimeMillis();
 				
-				// Print and log the results for the current depth
-				System.out.println("Depth Limit " + limit);
-				System.out.println("Visited Nodes: " + visited);
-				System.out.println("Time Taken " + (end - start) + "ms");
+				// if time limit is not reached
+				if(breakLoop) {
+					// Print and log the results for the current depth
+					System.out.println("Depth Limit " + limit);
+					System.out.println("Visited Nodes: " + visited);
+					System.out.println("Time Taken " + (end - start) + "ms");
+					
+					// Write the results to the CSV file
+					String [] data = { String.valueOf(limit), String.valueOf(visited), String.valueOf(end-start) }; 
+					writer.writeNext(data); 
+					System.out.println("----------------------------------------");
+				}
 				
-				// Write the results to the CSV file
-				String [] data = { String.valueOf(limit), String.valueOf(visited), String.valueOf(end-start) }; 
-				writer.writeNext(data); 
-				System.out.println("----------------------------------------");
-		    }
-			
-			writer.close(); 
-		}
-		
+				// if no of visited nodes is the same as previous depth, terminate
+				if(sameVisited == visited) {
+					breakLoop = false;
+				}
+				
+				// Update the no of visited nodes and the depth limit
+			    sameVisited = visited;
+				limit++;
+			}
+		     	writer.close(); 		     	
+		}		
 		catch(Throwable t) {
 			if(t instanceof RuntimeException && t.getCause() != null)
 			t = t.getCause();

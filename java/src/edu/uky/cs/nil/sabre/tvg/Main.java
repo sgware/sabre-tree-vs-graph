@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.uky.cs.nil.sabre.bench.Benchmark;
-import edu.uky.cs.nil.sabre.bench.Report;
 
 public class Main {
 	/**
@@ -46,13 +45,13 @@ public class Main {
 			System.out.println("TREE TEST on " + problem.name);
 			t.filePath = problem.name;
 			t.epi = problem.el;
-			t.minutes = 1;
+			t.minutes = 60 * 24;
 			t.callTreeTest();
 			
 			System.out.println("GRAPH TEST on " + problem.name);
 			g.filePath = problem.name;
 			g.epi = problem.el;
-			g.minutes = 1;
+			g.minutes = 60 * 24;
 			g.callGraphTest();
 		}
 	}

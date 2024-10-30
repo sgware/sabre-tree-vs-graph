@@ -18,37 +18,13 @@ import edu.uky.cs.nil.sabre.util.Worker;
 
 /**
  * Runs tree-based search on a suite of {@link Benchmark benchmark problems} 
- * up to a defined depth and time, and outputs the results 
- * in a CSV file for each problem
+ * up to a defined time limit, and outputs the results 
+ * into a CSV file for each problem
  */
-public class TreeTest{
-	
-	// The current depth limit for the search
-	static int limit = 0;
-	
-	// Maximum depth limit allowed
-	static int maxlimit = 20;
-	
-	// Variables to store the start and end times of the search
-	static double start = 0;
-	static double end = 0;
-	
-	// File path for problem files
-	static String filePath = "";
-	
-	// Epistemic limit
-	static int epi = 0;
-	
-	// Time limit for the program in minutes	
-	static int minutes = 0;
-	
-	// Define directories for input problems and output results
-	private static final File directory = new File("java/sabre-benchmarks/problems/");
-	private static final File directory1 = new File("output/");
-		
+public class TreeTest extends Test{
 	/**
      * This method executes the TreeTest, performing search on a problem using 
-     * a tree-based search algorithm and logs the results (depth limit, nodes visited, 
+     * a tree-based search algorithm and logs the results (depth, nodes visited, 
      * and time taken) into a CSV file for analysis.
      */
 	public void callTreeTest() {
@@ -69,18 +45,23 @@ public class TreeTest{
 	        
 			print("Compiled Problem", session.getCompiledProblem());
 			
+			// Calculate the end time limit
+			endProgram =  (minutes * 60 * 1000);
+			
 			// Set goal, search, space, and time limits for the planner
 			session.setGoal(Number.get(2));
 			session.setSearchLimit(Planner.UNLIMITED_NODES);
 			session.setSpaceLimit(Planner.UNLIMITED_NODES);
-			session.setTimeLimit(Planner.UNLIMITED_TIME);
+			session.setTimeLimit(endProgram);
 			
-			// Get the current time and calculate the ending time depending on how long to run each problem for a certain depth
-			double startProgram = System.currentTimeMillis();
-			double endProgram =  startProgram + minutes * 60 * 1000;
+			// Set flag variable to true
+			breakLoop = true;
 			
-			// Loop through depth limits, incrementing until the maximum depth or time limit is reached
-			for(limit = 1; limit <= maxlimit && System.currentTimeMillis() <= endProgram; limit++) {
+			// Initialize counter variable to record the depth limits
+			limit = 1;
+
+			// Loop through depth limits, incrementing until the time limit is reached
+			while (breakLoop) {
 				// Reset time variables for each depth
 				end = 0;
 				start = 0;
@@ -88,20 +69,21 @@ public class TreeTest{
 				// Set the limits
 				session.setAuthorTemporalLimit(limit);
 				session.setCharacterTemporalLimit(limit);
-				session.setEpistemicLimit(epi);
+				session.setEpistemicLimit(epi);			
 				
-				// Record the start time of the current search iteration
-				start = System.currentTimeMillis();
-				
+				// Set the heuristic to 0
 				if(session.getPlanner() instanceof ProgressionPlanner) {
 					ProgressionCostFactory h = ProgressionCostFactory.ZERO;
 					session.setHeuristic(h);				
 				}
 				
+				// Record the start time of the current search iteration
+				start = System.currentTimeMillis();
+				
 				// Execute the search and get the result
 				ProgressionSearch search = (ProgressionSearch) session.getSearch();
 				Result<?> result = Worker.get(status -> search.get(status));
-				
+								
 				// Record the end time of the current search iteration
 				end = System.currentTimeMillis();
 				
@@ -115,6 +97,15 @@ public class TreeTest{
 				String [] data = { String.valueOf(limit), String.valueOf(result.visited), String.valueOf(end-start) }; 
 				writer.writeNext(data);
 				System.out.println("----------------------------------------");
+				
+				// Break loop if time limit is reached or if no of visited nodes is the same as previous depth
+				if((end-start) >= endProgram || result.visited == sameVisited) {
+					breakLoop = false;
+				}
+				
+				// Update the no of visited nodes and the depth limit
+				sameVisited = result.visited;			
+				limit++;
 			}
 			writer.close();
 		}
