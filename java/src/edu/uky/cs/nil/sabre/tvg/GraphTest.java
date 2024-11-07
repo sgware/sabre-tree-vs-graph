@@ -115,6 +115,7 @@ public class GraphTest extends Test {
 					// Write the results to the CSV file
 					String [] data = { String.valueOf(limit), String.valueOf(visited), String.valueOf(end-start) }; 
 					writer.writeNext(data); 
+					writer.flush();
 					System.out.println("----------------------------------------");
 				}
 				

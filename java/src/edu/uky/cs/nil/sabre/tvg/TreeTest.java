@@ -87,22 +87,27 @@ public class TreeTest extends Test{
 				// Record the end time of the current search iteration
 				end = System.currentTimeMillis();
 				
-				// Print and log the results for the current depth
-				System.out.println("Depth Limit " + limit);
-				System.out.println("Visited Nodes " + result.visited);
-				System.out.println("Generated Nodes " + result.generated);
-				System.out.println("Time Taken: " + (end - start) + " ms");
-				
-				// Write the results to the CSV file
-				String [] data = { String.valueOf(limit), String.valueOf(result.visited), String.valueOf(end-start) }; 
-				writer.writeNext(data);
-				System.out.println("----------------------------------------");
-				
-				// Break loop if time limit is reached or if no of visited nodes is the same as previous depth
-				if((end-start) >= endProgram || result.visited == sameVisited) {
+				// Break loop if time limit is reached 
+				if((end-start) > endProgram) {
 					breakLoop = false;
 				}
+				if (breakLoop) {
+					// Print and log the results for the current depth
+					System.out.println("Depth Limit " + limit);
+					System.out.println("Visited Nodes " + result.visited);
+					System.out.println("Generated Nodes " + result.generated);
+					System.out.println("Time Taken: " + (end - start) + " ms");
 				
+					// Write the results to the CSV file
+					String [] data = { String.valueOf(limit), String.valueOf(result.visited), String.valueOf(end-start) }; 
+					writer.writeNext(data);
+					writer.flush();
+					System.out.println("----------------------------------------");
+				}
+				// Break loop if no of visited nodes is the same as previous depth
+				if(result.visited == sameVisited) {
+					breakLoop = false;
+				}
 				// Update the no of visited nodes and the depth limit
 				sameVisited = result.visited;			
 				limit++;
