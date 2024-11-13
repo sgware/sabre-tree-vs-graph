@@ -1,7 +1,5 @@
 package edu.uky.cs.nil.sabre.tvg;
-
 import java.io.File;
-
 
 public class Test {
 	// Tracks the current depth of the search
@@ -18,8 +16,8 @@ public class Test {
 	static double start = 0;
 		
 	// Define directories for input problems and output results
-    static final File directory = new File("java/sabre-benchmarks/problems/");
-    static final File directory1 = new File("output/");
+    	static final File directory = new File("java/sabre-benchmarks/problems/");
+    	static final File directory1 = new File("output/");
 	
 	// File path for problem files
 	static String filePath = "";
@@ -29,12 +27,14 @@ public class Test {
 	
 	// Time limit for the program in minutes
 	static int minutes = 0;
-	
+
+	// Flag to exit loop
 	static boolean breakLoop = true;
-	
+
+	// Start time and the end time limit
 	double startProgram = 0;
 	long endProgram =  0;
-	
-	static long sameVisited = 0;
 
+	// For checking if the no of visited nodes is same as previous depth
+	static long sameVisited = 0;
 }
