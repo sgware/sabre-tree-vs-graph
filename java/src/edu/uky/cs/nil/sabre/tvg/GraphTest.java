@@ -75,6 +75,15 @@ public class GraphTest extends Test {
 				CompiledProblem g = (CompiledProblem) session.getCompiledProblem();
 				StateGraph graph = new StateGraph(g);
 				
+				// Run garbage collector and pause briefly.
+				System.gc();
+				try {
+					Thread.sleep(1000);
+				}
+				catch(InterruptedException e) {
+					// do nothing
+				}
+				
 				// Record the start time of the current search iteration
 				start = System.currentTimeMillis();
 				

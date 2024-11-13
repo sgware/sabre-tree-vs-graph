@@ -49,7 +49,7 @@ public class TreeTest extends Test{
 			endProgram =  (minutes * 60 * 1000);
 			
 			// Set goal, search, space, and time limits for the planner
-			session.setGoal(Number.get(2));
+			session.setGoal(Number.get(1000));
 			session.setSearchLimit(Planner.UNLIMITED_NODES);
 			session.setSpaceLimit(Planner.UNLIMITED_NODES);
 			session.setTimeLimit(endProgram);
@@ -75,6 +75,15 @@ public class TreeTest extends Test{
 				if(session.getPlanner() instanceof ProgressionPlanner) {
 					ProgressionCostFactory h = ProgressionCostFactory.ZERO;
 					session.setHeuristic(h);				
+				}
+				
+				// Run garbage collector and pause briefly.
+				System.gc();
+				try {
+					Thread.sleep(1000);
+				}
+				catch(InterruptedException e) {
+					// do nothing
 				}
 				
 				// Record the start time of the current search iteration
