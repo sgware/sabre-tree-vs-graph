@@ -33,10 +33,10 @@ public class GraphTest extends Test {
 	private static StateNode n = null;
 	
 	/**
-     * This method executes the GraphTest, performing search on a problem using 
-     * a graph-based search algorithm and logs the results (depth, nodes visited, 
-     * and time taken) into a CSV file for analysis.
-     */
+     	* This method executes the GraphTest, performing search on a problem using 
+     	* a graph-based search algorithm and logs the results (depth, nodes visited, 
+     	* and time taken) into a CSV file for analysis.
+     	*/
 	public void callGraphTest() {
 		try {
 			// Initialize a new session
@@ -48,17 +48,17 @@ public class GraphTest extends Test {
 			
 			// Create a CSV file for output to store search results
 			File file1 = new File(directory1.getPath() + File.separator + filePath + "GraphTest.csv"); 
-	        FileWriter outputfile = new FileWriter(file1); 
-	        CSVWriter writer = new CSVWriter(outputfile);
+	        	FileWriter outputfile = new FileWriter(file1); 
+	        	CSVWriter writer = new CSVWriter(outputfile);
 	        
-	        // Write CSV header
-	        String[] header = { "Depth Limit", "Visited Nodes", "Time Taken (ms)" }; 
-	        writer.writeNext(header); 
+	        	// Write CSV header
+	        	String[] header = { "Depth Limit", "Visited Nodes", "Time Taken (ms)" }; 
+	        	writer.writeNext(header); 
             
-	        // Initialize flag variable to break loop at a limit
-	        breakLoop = true;
+	        	// Initialize flag variable to break loop at a limit
+	        	breakLoop = true;
 	        
-	        // Initialize counter variable to record the depth limits
+	        	// Initialize counter variable to record the depth limits
 			limit = 1;
 			
 			// Loop through depth limits, incrementing until the time limit is reached
@@ -134,7 +134,7 @@ public class GraphTest extends Test {
 				}
 				
 				// Update the no of visited nodes and the depth limit
-			    sameVisited = visited;
+			    	sameVisited = visited;
 				limit++;
 			}
 		     	writer.close(); 		     	
