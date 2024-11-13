@@ -23,10 +23,10 @@ import edu.uky.cs.nil.sabre.util.Worker;
  */
 public class TreeTest extends Test{
 	/**
-     * This method executes the TreeTest, performing search on a problem using 
-     * a tree-based search algorithm and logs the results (depth, nodes visited, 
-     * and time taken) into a CSV file for analysis.
-     */
+     	* This method executes the TreeTest, performing search on a problem using 
+     	* a tree-based search algorithm and logs the results (depth, nodes visited, 
+     	* and time taken) into a CSV file for analysis.
+     	*/
 	public void callTreeTest() {
 		try {
 			// Initialize a new session for problem solving
@@ -38,10 +38,10 @@ public class TreeTest extends Test{
 			
 			// Prepare the output CSV file to store test results
 			File file1 = new File(directory1.getPath() + File.separator + filePath + "TreeTest.csv"); 
-	        FileWriter outputfile = new FileWriter(file1); 
-	        CSVWriter writer = new CSVWriter(outputfile);
-	        String[] header = { "Depth Limit", "Visided Nodes", "Time Taken (ms)" }; 
-	        writer.writeNext(header); 
+	        	FileWriter outputfile = new FileWriter(file1); 
+	        	CSVWriter writer = new CSVWriter(outputfile);
+	        	String[] header = { "Depth Limit", "Visited Nodes", "Time Taken (ms)" }; 
+	        	writer.writeNext(header); 
 	        
 			print("Compiled Problem", session.getCompiledProblem());
 			
