@@ -45,13 +45,13 @@ public class Main {
 			System.out.println("TREE TEST on " + problem.name);
 			t.filePath = problem.name;
 			t.epi = problem.el;
-			t.minutes = 60 * 24;
+			t.minutes = 1;
 			t.callTreeTest();
 			
 			System.out.println("GRAPH TEST on " + problem.name);
 			g.filePath = problem.name;
 			g.epi = problem.el;
-			g.minutes = 60 * 24;
+			g.minutes = 1;
 			g.callGraphTest();
 		}
 	}

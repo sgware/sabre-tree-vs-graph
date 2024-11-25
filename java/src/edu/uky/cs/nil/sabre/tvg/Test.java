@@ -16,8 +16,8 @@ public class Test {
 	static double start = 0;
 		
 	// Define directories for input problems and output results
-    	static final File directory = new File("java/sabre-benchmarks/problems/");
-    	static final File directory1 = new File("output/");
+	static final File directory = new File("java/sabre-benchmarks/problems/");
+	static final File directory1 = new File("output/");
 	
 	// File path for problem files
 	static String filePath = "";
