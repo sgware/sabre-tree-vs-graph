@@ -20,7 +20,7 @@ public class TreeMain {
 		TreeTest t = new TreeTest();
 		t.filePath = problem;
 		t.epi = el;
-		t.minutes = 1;
+		t.minutes = 60 * 24;
 		System.out.println("Running TREE TEST on " + problem);
 		t.callTreeTest();
 	}
