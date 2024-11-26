@@ -18,7 +18,7 @@ public class GraphMain {
 		
 		GraphTest g = new GraphTest();
 		g.filePath = problem;
-		g.minutes = 1;
+		g.minutes = 60 * 24;
 		System.out.println("Running GRAPH TEST on " + problem);
 		g.callGraphTest();
 	}
