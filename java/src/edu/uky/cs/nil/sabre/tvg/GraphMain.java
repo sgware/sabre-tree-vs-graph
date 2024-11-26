@@ -11,6 +11,7 @@ public class GraphMain {
 			System.err.println("Usage: java GraphMain <problem> <ATL> <CTL>");
 			System.exit(1);
 		}
+		
 		String problem = args[0];
 		int atl = Integer.parseInt(args[1]);
 		int ctl = Integer.parseInt(args[2]);
