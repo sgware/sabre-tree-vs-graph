@@ -19,4 +19,41 @@ java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar
 
 java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain deerhunter 10 6 1
 java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain deerhunter 10 6
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain secretagent 8 8 1
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain secretagent 8 8
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain aladdin 13 10 2
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain aladdin 13 10
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain hospital 11 5 3
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain hospital 11 5
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain basketball 7 5 2
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain basketball 7 5
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain western 8 5 1
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain western 8 5
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain fantasy 9 3 2
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain fantasy 9 3
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain space 9 3 1
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain space 9 3
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain raiders 7 4 1
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain raiders 7 4
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain treasure 4 4 3
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain treasure 4 4
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain gramma 6 5 2
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain gramma 6 5
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain jailbreak 7 6 1
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain jailbreak 7 6
+
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.TreeMain lovers 5 5 2
+java -Xms500g -Xmx500g -cp java/opencsv/opencsv-5.9.jar;java/sabre/lib/sabre.jar;java/sabre-benchmarks/bin;java/bin edu.uky.cs.nil.sabre.tvg.GraphMain lovers 5 5
+
 ```
