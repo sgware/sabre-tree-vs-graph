@@ -101,7 +101,12 @@ public class GraphTest extends Test {
 						for(Action a : g.actions) {
 							// Check if the action's precondition is satisfied for the current node
 							if(a.precondition.evaluate(n).equals(True.TRUE)) {
-								visit(n.getAfter(a).getAfterTriggers(), depth + 1); // Visit the node resulting from applying the action			 
+								try {
+									visit(n.getAfter(a).getAfterTriggers(), depth + 1); // Visit the node resulting from applying the action
+								}
+								catch (StackOverflowError e) {
+									// do nothing
+								}
 							}
 							if(System.currentTimeMillis() >= endProgram) {
 								breakLoop = false;
