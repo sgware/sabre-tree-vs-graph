@@ -47,18 +47,18 @@ public class GraphTest extends Test {
 			print("Compiled Problem", session.getCompiledProblem());
 			
 			// Create a CSV file for output to store search results
-			File file1 = new File(directory1.getPath() + File.separator + filePath + "GraphTest.csv"); 
-	        	FileWriter outputfile = new FileWriter(file1); 
-	        	CSVWriter writer = new CSVWriter(outputfile);
-	        
-	        	// Write CSV header
-	        	String[] header = { "Depth Limit", "Visited Nodes", "Time Taken (ms)" }; 
-	        	writer.writeNext(header); 
-            
-	        	// Initialize flag variable to break loop at a limit
-	        	breakLoop = true;
-	        
-	        	// Initialize counter variable to record the depth limits
+			File file1 = new File(directory1.getPath() + File.separator + filePath + "GraphTest.csv");
+			FileWriter outputfile = new FileWriter(file1);
+			CSVWriter writer = new CSVWriter(outputfile);
+			
+			// Write CSV header
+			String[] header = { "Depth Limit", "Visited Nodes", "Time Taken (ms)" };
+			writer.writeNext(header);
+			
+			// Initialize flag variable to break loop at a limit
+			breakLoop = true;
+			
+			// Initialize counter variable to record the depth limits
 			limit = 1;
 			
 			// Loop through depth limits, incrementing until the time limit is reached
