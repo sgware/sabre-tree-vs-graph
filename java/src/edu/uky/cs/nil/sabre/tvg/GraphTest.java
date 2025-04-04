@@ -20,7 +20,7 @@ import edu.uky.cs.nil.sabre.logic.True;
 
 /**
  * Runs graph-based search on a suite of {@link Benchmark benchmark problems} 
- * up to a defined time limit, and outputs the results 
+ * up to a defined time and depth limit, and outputs the results 
  * into a CSV file for each problem
  */
 public class GraphTest extends Test {
@@ -33,10 +33,10 @@ public class GraphTest extends Test {
 	private static StateNode n = null;
 	
 	/**
-     	* This method executes the GraphTest, performing search on a problem using 
-     	* a graph-based search algorithm and logs the results (depth, nodes visited, 
-     	* and time taken) into a CSV file for analysis.
-     	*/
+	 * This method executes the GraphTest, performing search on a problem using 
+     * a graph-based search algorithm and logs the results (depth, nodes generated, nodes visited, 
+     * and time taken) into a CSV file for analysis.
+     */
 	public void callGraphTest() {
 		try {
 			// Initialize a new session
@@ -52,7 +52,7 @@ public class GraphTest extends Test {
 			CSVWriter writer = new CSVWriter(outputfile);
 			
 			// Write CSV header
-			String[] header = { "Depth Limit", "Visited Nodes", "Time Taken (ms)" };
+			String[] header = { "Depth Limit", "Generated Nodes", "Visited Nodes", "Time Taken (ms)" };
 			writer.writeNext(header);
 			
 			// Initialize flag variable to break loop at a limit
@@ -60,8 +60,9 @@ public class GraphTest extends Test {
 			
 			// Initialize counter variable to record the depth limits
 			limit = 1;
+			depthlimit=1;
 			
-			// Loop through depth limits, incrementing until the time limit is reached
+			// Loop through depth limits, incrementing until the time or depth limit is reached
 			while(breakLoop) {
 				// Reset counters and timing variables for each depth
 				visited = 0;
@@ -112,9 +113,8 @@ public class GraphTest extends Test {
 								breakLoop = false;
 								break;
 							}
-					}
-				}
-					
+						}
+					}					
 				}
 				// Record the end time of the current search iteration
 				end = System.currentTimeMillis();
@@ -122,27 +122,29 @@ public class GraphTest extends Test {
 				// if time limit is not reached
 				if(breakLoop) {
 					// Print and log the results for the current depth
-					System.out.println("Depth Limit " + limit);
+					System.out.println("Depth: " + limit);
+					System.out.println("Generated nodes: ");
 					System.out.println("Visited Nodes: " + visited);
 					System.out.println("Time Taken " + (end - start) + "ms");
 					
 					// Write the results to the CSV file
-					String [] data = { String.valueOf(limit), String.valueOf(visited), String.valueOf(end-start) }; 
-					writer.writeNext(data); 
+					String [] data = { String.valueOf(limit), String.valueOf(visited), String.valueOf(visited), String.valueOf(end-start) }; 
+					writer.writeNext(data);
 					writer.flush();
 					System.out.println("----------------------------------------");
 				}
 				
 				// if no of visited nodes is the same as previous depth, terminate
-				if(sameVisited == visited) {
+				if(sameVisited == visited || depthlimit == 100) {
 					breakLoop = false;
 				}
 				
 				// Update the no of visited nodes and the depth limit
-			    	sameVisited = visited;
+			    sameVisited = visited;
 				limit++;
+				depthlimit++;
 			}
-		     	writer.close(); 		     	
+			writer.close(); 		     	
 		}		
 		catch(Throwable t) {
 			if(t instanceof RuntimeException && t.getCause() != null)

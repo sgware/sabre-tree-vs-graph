@@ -18,15 +18,15 @@ import edu.uky.cs.nil.sabre.util.Worker;
 
 /**
  * Runs tree-based search on a suite of {@link Benchmark benchmark problems} 
- * up to a defined time limit, and outputs the results 
+ * up to a defined time and depth limit, and outputs the results 
  * into a CSV file for each problem
  */
 public class TreeTest extends Test{
 	/**
-     	* This method executes the TreeTest, performing search on a problem using 
-     	* a tree-based search algorithm and logs the results (depth, nodes visited, 
-     	* and time taken) into a CSV file for analysis.
-     	*/
+	 * This method executes the TreeTest, performing search on a problem using
+	 * a tree-based search algorithm and logs the results (depth, nodes generated, 
+	 * nodes visited, and time taken) into a CSV file for analysis.
+	 */
 	public void callTreeTest() {
 		try {
 			// Initialize a new session for problem solving
@@ -37,11 +37,11 @@ public class TreeTest extends Test{
 			session.setProblem(file);
 			
 			// Prepare the output CSV file to store test results
-			File file1 = new File(directory1.getPath() + File.separator + filePath + "TreeTest.csv"); 
-	        	FileWriter outputfile = new FileWriter(file1); 
-	        	CSVWriter writer = new CSVWriter(outputfile);
-	        	String[] header = { "Depth Limit", "Visited Nodes", "Time Taken (ms)" }; 
-	        	writer.writeNext(header); 
+			File file1 = new File(directory1.getPath() + File.separator + filePath + "TreeTest.csv");
+			FileWriter outputfile = new FileWriter(file1);
+			CSVWriter writer = new CSVWriter(outputfile);
+			String[] header = { "Depth Limit", "Generated Nodes", "Visited Nodes", "Time Taken (ms)" };
+			writer.writeNext(header); 
 	        
 			print("Compiled Problem", session.getCompiledProblem());
 			
@@ -59,8 +59,9 @@ public class TreeTest extends Test{
 			
 			// Initialize counter variable to record the depth limits
 			limit = 1;
-
-			// Loop through depth limits, incrementing until the time limit is reached
+            depthlimit = 1;
+            
+			// Loop through depth limits, incrementing until the time or depth limit is reached
 			while (breakLoop) {
 				// Reset time variables for each depth
 				end = 0;
@@ -92,14 +93,14 @@ public class TreeTest extends Test{
 				// Execute the search and get the result
 				ProgressionSearch search = (ProgressionSearch) session.getSearch();
 				Result<?> result = Worker.get(status -> search.get(status));
-								
-				// Record the end time of the current search iteration
+
 				end = System.currentTimeMillis();
 				
 				// Break loop if time limit is reached 
-				if((end-start) > endProgram) {
+				if((end-start) > endProgram || depthlimit == 101) {
 					breakLoop = false;
 				}
+				
 				if (breakLoop) {
 					// Print and log the results for the current depth
 					System.out.println("Depth Limit " + limit);
@@ -108,7 +109,7 @@ public class TreeTest extends Test{
 					System.out.println("Time Taken: " + (end - start) + " ms");
 				
 					// Write the results to the CSV file
-					String [] data = { String.valueOf(limit), String.valueOf(result.visited), String.valueOf(end-start) }; 
+					String [] data = { String.valueOf(limit), String.valueOf(result.generated), String.valueOf(result.visited), String.valueOf(end-start) }; 
 					writer.writeNext(data);
 					writer.flush();
 					System.out.println("----------------------------------------");
@@ -120,6 +121,7 @@ public class TreeTest extends Test{
 				// Update the no of visited nodes and the depth limit
 				sameVisited = result.visited;			
 				limit++;
+				depthlimit++;
 			}
 			writer.close();
 		}
