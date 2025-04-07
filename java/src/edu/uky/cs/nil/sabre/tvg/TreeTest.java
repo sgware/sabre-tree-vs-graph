@@ -59,7 +59,7 @@ public class TreeTest extends Test{
 			
 			// Initialize counter variable to record the depth limits
 			limit = 1;
-            depthlimit = 1;
+			depthlimit = 1;
             
 			// Loop through depth limits, incrementing until the time or depth limit is reached
 			while (breakLoop) {
@@ -96,7 +96,7 @@ public class TreeTest extends Test{
 
 				end = System.currentTimeMillis();
 				
-				// Break loop if time limit is reached 
+				// Break loop if time or depth limit is reached 
 				if((end-start) > endProgram || depthlimit == 101) {
 					breakLoop = false;
 				}
