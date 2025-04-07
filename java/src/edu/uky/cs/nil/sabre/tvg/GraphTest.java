@@ -34,9 +34,9 @@ public class GraphTest extends Test {
 	
 	/**
 	 * This method executes the GraphTest, performing search on a problem using 
-     * a graph-based search algorithm and logs the results (depth, nodes generated, nodes visited, 
-     * and time taken) into a CSV file for analysis.
-     */
+         * a graph-based search algorithm and logs the results (depth, nodes generated, nodes visited, 
+         * and time taken) into a CSV file for analysis.
+         */
 	public void callGraphTest() {
 		try {
 			// Initialize a new session
@@ -60,7 +60,7 @@ public class GraphTest extends Test {
 			
 			// Initialize counter variable to record the depth limits
 			limit = 1;
-			depthlimit=1;
+			depthlimit = 1;
 			
 			// Loop through depth limits, incrementing until the time or depth limit is reached
 			while(breakLoop) {
@@ -140,7 +140,7 @@ public class GraphTest extends Test {
 				}
 				
 				// Update the no of visited nodes and the depth limit
-			    sameVisited = visited;
+			        sameVisited = visited;
 				limit++;
 				depthlimit++;
 			}
