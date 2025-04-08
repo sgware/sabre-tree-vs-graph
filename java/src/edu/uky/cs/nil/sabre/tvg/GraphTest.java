@@ -119,7 +119,7 @@ public class GraphTest extends Test {
 				// Record the end time of the current search iteration
 				end = System.currentTimeMillis();
 				
-				// if time limit is not reached
+				// if time or depth limit is not reached
 				if(breakLoop) {
 					// Print and log the results for the current depth
 					System.out.println("Depth: " + limit);
