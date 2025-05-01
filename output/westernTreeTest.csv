@@ -1,4 +1,4 @@
-"Depth Limit","Visited Nodes","Time Taken (ms)"
-"1","33","320.0"
-"2","4975","252.0"
-"3","1452578","70844.0"
+"Depth Limit","Generated Nodes","Visited Nodes","Time Taken (ms)"
+"1","42","33","292.0"
+"2","5273","4975","237.0"
+"3","1147800","1455248","83167.0"
